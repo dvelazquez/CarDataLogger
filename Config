@@ -1,0 +1,10 @@
+#!/bin/bash
+echo BB-DCAN1 > /sys/devices/bone_capemgr.9/slots
+# Do I need this?
+modprobe can
+modprobe can-dev
+modprobe can-raw
+# config can0
+ifconfig can0 down
+ip link set can0 up type can bitrate 500000 #loopback off triple-sampling on
+ifconfig can0 up
